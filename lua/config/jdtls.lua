@@ -1,7 +1,6 @@
 local M = {}
 
-function M.setup()
-    local function get_jdtls()
+local function get_jdtls()
         local mason_registry = require "mason-registry"
         local jdtls = mason_registry.get_package "jdtls"
         local jdtls_path = jdtls:get_install_path()
@@ -10,9 +9,9 @@ function M.setup()
         local config = jdtls_path .. "/config_" .. SYSTEM
         local lombok = jdtls_path .. "/lombok.jar"
       return launcher, config, lombok
-    end
+end
 
-    local function get_bundles()
+local function get_bundles()
         local mason_registry = require "mason-registry"
         local java_debug = mason_registry.get_package "java-debug-adapter"
         local java_test = mason_registry.get_package "java-test"
@@ -24,7 +23,7 @@ function M.setup()
         return bundles
     end
 
-    local function get_workspace()
+local function get_workspace()
         local home = os.getenv "HOME"
         local workspace_path = home .. "/code/workspace/"
         local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
@@ -32,6 +31,7 @@ function M.setup()
         return workspace_dir
     end
 
+function M.setup()
     local jdtls = require "jdtls"
     local jdtls_setup = require("jdtls.setup")
     local capabilities = {
@@ -46,6 +46,7 @@ function M.setup()
             }
         }
     }
+
     local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     for k,v in pairs(lsp_capabilities) do capabilities[k] = v end
@@ -75,15 +76,15 @@ function M.setup()
             vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
             vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
 
-            vim.keymap.set('n', '<leader>Jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", {desc = "Java Organize Imports"})
-            vim.keymap.set('n', '<leader>Jv', "<Cmd> lua require('jdtls').extract_variable()<CR>", {desc = "Java Extract Variable"})
-            vim.keymap.set('v', '<leader>Jv', "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>", {desc = "Java Extract Variable"})
-            vim.keymap.set('n', '<leader>JC', "<Cmd> lua require('jdtls').extract_constant()<CR>", {desc = "Java Extract Constant"})
-            vim.keymap.set('v', '<leader>JC', "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>", {desc = "Java Extract Constant"})
-            vim.keymap.set('n', '<leader>Jt', "<Cmd> lua require('jdtls').test_nearest_method()<CR>", {desc = "Java Test Method"})
-            vim.keymap.set('v', '<leader>Jt', "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>", {desc = "Java Test Method"})
-            vim.keymap.set('n', '<leader>JT', "<Cmd> lua require('jdtls').test_class()<CR>", {desc = "Java Test Class"})
-            vim.keymap.set('n', '<leader>Ju', "<Cmd> JdtUpdateConfig<CR>", {desc = "Java Update Config"})
+            vim.keymap.set('n', '<leader>Jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", {desc = "[J]ava [O]rganize Imports"})
+            vim.keymap.set('n', '<leader>Jv', "<Cmd> lua require('jdtls').extract_variable()<CR>", {desc = "[J]ava Extract [V]ariable"})
+            vim.keymap.set('v', '<leader>Jv', "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>", {desc = "[J]ava Extract [V]ariable"})
+            vim.keymap.set('n', '<leader>JC', "<Cmd> lua require('jdtls').extract_constant()<CR>", {desc = "[J]ava Extract [C]onstant"})
+            vim.keymap.set('v', '<leader>JC', "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>", {desc = "[J]ava Extract [C]onstant"})
+            vim.keymap.set('n', '<leader>Jt', "<Cmd> lua require('jdtls').test_nearest_method()<CR>", {desc = "[J]ava [T]est Method"})
+            vim.keymap.set('v', '<leader>Jt', "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>", {desc = "[J]ava [T]est Method"})
+            vim.keymap.set('n', '<leader>JT', "<Cmd> lua require('jdtls').test_class()<CR>", {desc = "[J]ava [T]est Class"})
+            vim.keymap.set('n', '<leader>Ju', "<Cmd> JdtUpdateConfig<CR>", {desc = "[J]ava [U]pdate Config"})
         end
 
         java_keymaps()
