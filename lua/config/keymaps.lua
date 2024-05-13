@@ -1,13 +1,12 @@
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
-
+-- Set our leader keybinding to space
+-- Anywhere you see <leader> in a keymapping specifies the space key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Get rid of annoying highlights when you are done searching
+-- Remove search highlights after searching
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlights" })
 
--- Exit vims terminal, because its a pain in the backside
+-- Exit Vim's terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- OPTIONAL: Disable arrow keys in normal mode
@@ -27,5 +26,5 @@ vim.keymap.set("n", "<leader>wv", ":vsplit<cr>", { desc = "[W]indow Split [V]ert
 vim.keymap.set("n", "<leader>wh", ":split<cr>", { desc = "[W]indow Split [H]orizontal" })
 
 -- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left in visual mode" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right in visual mode" })
