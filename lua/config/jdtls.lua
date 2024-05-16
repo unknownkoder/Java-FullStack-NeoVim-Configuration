@@ -256,7 +256,7 @@ local function setup_jdtls()
         -- Unfortunately I have not found an elegant way to ensure this works 100%
         require('jdtls.dap').setup_dap_main_class_configs()
         -- Enable jdtls commands to be used in Neovim
-        require 'jdtls_setup'.add_commands()
+        require 'jdtls.setup'.add_commands()
         -- Refresh the codelens
         -- Code lens enables features such as code reference counts, implemenation counts, and more.
         vim.lsp.codelens.refresh()
