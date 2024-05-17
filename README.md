@@ -6,7 +6,7 @@ This repository holds the configuration code for my simple yet effective NeoVim 
 
 Of course this is just a starting point for you to configure, and just the tip of the ice berg when it comes to customization, so whenever you move onto different languages, or want more features I have designed the structure of the configuratuion to be easily customized.
 
-This configuration repository goes along with my tutorial on how to setup NeoVim for Java Developers, which you can find [here](www.youtube.com](https://youtu.be/zbpF3te0M3g) to follow along and get explanations of the different plugins we are configuring.
+This configuration repository goes along with my tutorial on how to setup NeoVim for Java Developers, which you can find [here](https://youtu.be/zbpF3te0M3g) to follow along and get explanations of the different plugins we are configuring.
 
 ## Plugins
 
